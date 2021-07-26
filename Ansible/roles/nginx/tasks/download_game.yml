@@ -1,0 +1,9 @@
+---
+- name: Ensure git is installed
+  ansible.builtin.apt:
+    name: git
+
+- name: Download GitHub repository
+  ansible.builtin.git:
+    repo: https://github.com/JonasRBNF/Game.git
+    dest: /var/www/game

@@ -1,0 +1,8 @@
+---
+- name: Create a new database with named 'database1'
+  community.mysql.mysql_db:
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_password }}"
+    config_file: /etc/mysql/my.cnf
+    name: "{{ db_name }}"
+    state: present

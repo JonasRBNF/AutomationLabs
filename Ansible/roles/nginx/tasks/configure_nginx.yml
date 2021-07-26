@@ -1,0 +1,12 @@
+---
+- name: Add game files to /var/www/ directory
+  import_tasks: download_game.yml
+
+- name: Copy Nginx configuration file
+  ansible.builtin.copy:
+    src: default
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify: Restart Nginx service

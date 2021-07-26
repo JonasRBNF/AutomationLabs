@@ -1,0 +1,15 @@
+---
+- name: Copy MySQL configuration file
+  ansible.builtin.copy:
+    src: my.cnf
+    dest: /etc/mysql/my.cnf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify: Restart MySQL service
+
+- name: Create MySQL user
+  import_tasks: create_user.yml
+
+- name: Create new database
+  import_tasks: create_database.yml

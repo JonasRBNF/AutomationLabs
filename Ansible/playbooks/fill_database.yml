@@ -1,0 +1,18 @@
+---
+- name: Create a user on all nodes
+  hosts: ansiblenode1.ansible.com
+  vars:
+    db_user: admin
+    db_password: password
+    db_name: database1
+
+  tasks:
+    - name: Create table and insert data
+      community.mysql.mysql_query:
+        login_user: "{{ db_user }}"
+        login_password: "{{ db_password }}"
+        login_db: "{{ db_name }}"
+        query:
+          - CREATE TABLE `Users` ( `id` int(11) NOT NULL auto_increment, `firstname` varchar(25) NOT NULL, `lastname` varchar(25) NOT NULL, `password` varchar(25) NOT NULL, `email` varchar(100) NOT NULL, PRIMARY KEY (`id`) )
+          - INSERT INTO Users (firstname, lastname, password, email) VALUES ('Jonas', 'Bruchez', 'password', 'jonas@email.com')
+        single_transaction: no

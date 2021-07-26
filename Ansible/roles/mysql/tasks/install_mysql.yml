@@ -1,0 +1,19 @@
+---
+- name: Download mysql-server package
+  ansible.builtin.apt:
+    deb: "{{ mysql_server_url }}"
+
+- name: Install last updates
+  ansible.builtin.apt:
+    update_cache: yes
+    upgrade: dist
+
+- name: Ensure MySQL is installed
+  ansible.builtin.apt:
+    name: mysql-server
+    state: latest
+
+- name: Ensure PyMySQL is installed
+  ansible.builtin.apt:
+    name: python3-pymysql
+    state: latest

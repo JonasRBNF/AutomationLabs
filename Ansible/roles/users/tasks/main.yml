@@ -1,0 +1,33 @@
+---
+- name: Create user and group on Debian nodes
+  block:
+    - name: Ensure that Debian group is present
+      ansible.builtin.group:
+        name: "{{ group }}"
+        state: present
+
+    - name: Create a user on Debian nodes
+      ansible.builtin.user:
+        name: "{{ username }}"
+        password: "{{ password }}"
+        shell: /bin/bash
+        state: present
+        groups: "{{ group }}"
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Create user and group on Windows nodes
+  block:
+    - name: Ensure that Windows group is present
+      ansible.windows.win_group:
+        name: "{{ group }}"
+        state: present
+
+    - name: Create a user on Windows nodes
+      ansible.windows.win_user:
+        name: "{{ username }}"
+        password_expired: yes
+        state: present
+        groups:
+          - Users
+          - "{{ group }}"
+  when: ansible_facts['os_family'] == "Windows"

@@ -1,0 +1,15 @@
+---
+#Installation of MySQL server on node 1
+- name: Installation and configuration of MySQL server
+  block:
+    - name: Install MySQL server on Debian
+      include_tasks: install_mysql.yml
+
+    - name: Configure MySQL server on Debian
+      include_tasks: configure_mysql.yml
+  when: ansible_facts['nodename'] == "ansiblenode1"
+
+# Installation of MySQL Workbench on node 2 to manage the SQL server created
+- name: Install MySQL Workbench on Windows
+  include_tasks: install_mysql_workbench.yml
+  when: ansible_facts['os_family'] == "Windows"

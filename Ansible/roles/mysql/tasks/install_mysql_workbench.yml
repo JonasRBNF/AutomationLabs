@@ -1,0 +1,24 @@
+---
+- name: Download Visual Studio C++ 2019 Redistributable package
+  win_get_url:
+    url: "{{visualstudio_prerequisites_url }}"
+    dest: "C:\\Users\\{{ user_win_path }}\\Downloads\\visual2019red.exe"
+
+- name: Install Visual Studio C++ 2019 Redistributable package
+  win_package:
+    path: "C:\\Users\\{{ user_win_path }}\\Downloads\\visual2019red.exe"
+    product_id: '{C56D2482-32F7-4CB7-AF41-4CC51EBCB17D}'
+    arguments:
+      - /install
+      - /passive
+      - /norestart
+
+- name: Downlaod MySQL Workbench msi file
+  win_get_url:
+    url: "{{ mysql_workbench_url }}"
+    dest: "C:\\Users\\{{ user_win_path }}\\Downloads\\mysql_workbench.msi"
+
+- name: Install MySQL Workbench msi file
+  win_package:
+    path: "C:\\Users\\{{ user_win_path }}\\Downloads\\mysql_workbench.msi"
+    state: present

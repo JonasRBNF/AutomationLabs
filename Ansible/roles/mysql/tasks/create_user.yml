@@ -1,0 +1,22 @@
+---
+- name: Create MySQL user with name 'admin' for localhost
+  community.mysql.mysql_user:
+    login_user: root
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    check_implicit_admin: yes
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    priv: "*.*:ALL"
+    host: localhost
+    state: present
+
+- name: Create MySQL user with name 'admin' for remote connection from node 2
+  community.mysql.mysql_user:
+    login_user: root
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    check_implicit_admin: yes
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    priv: "*.*:ALL"
+    host: ansiblenode2.ansible.com
+    state: present

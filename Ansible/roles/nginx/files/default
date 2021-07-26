@@ -1,0 +1,14 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name ansiblenode1.ansible.com;
+
+        root /var/www/game/html;
+
+        index Titlescreen.html;
+
+        location ~ \.(js|css|mp3|jpg|png) {
+                root /var/www/game/;
+        }
+}
