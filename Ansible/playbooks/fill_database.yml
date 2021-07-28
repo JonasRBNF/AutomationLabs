@@ -1,5 +1,5 @@
 ---
-- name: Create a user on all nodes
+- name: Fill database
   hosts: ansiblenode1.ansible.com
   vars:
     db_user: admin
