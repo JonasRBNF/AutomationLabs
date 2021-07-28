@@ -1,8 +1,6 @@
 ---
 - name: Install Nginx on Debian
   include_tasks: install_nginx.yml
-  when: ansible_facts['os_family'] == "Debian"
 
 - name: Configure Nginx on Debian
   include_tasks: configure_nginx.yml
-  when: ansible_facts['os_family'] == "Debian"
