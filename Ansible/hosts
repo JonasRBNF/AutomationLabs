@@ -1,0 +1,21 @@
+[db]
+ansiblenode1.ansible.com
+ansiblenode2.ansible.com
+
+[linux]
+ansiblenode1.ansible.com
+# other Linux machines...
+
+[windows]
+ansiblenode2.ansible.com
+# other Windows machines...
+
+[linux:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+# Change "user" and "password" with your Windows user and password
+[windows:vars]
+ansible_user=user
+ansible_password=password
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
